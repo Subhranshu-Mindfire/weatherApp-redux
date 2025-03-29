@@ -9,7 +9,7 @@ const Middle = () => {
           17
         </div>
         <div className="ms-3 condition fs-3 text-white fw-medium d-flex flex-column justify-content-center">
-          <div>&#176;C</div>
+          <div><span>&#176;C</span> | <span className='opacity-50'>&#176;F</span></div>
           <div className='fs-3 '>Partly Cloudy</div>
         </div>
       </div>
