@@ -4,7 +4,7 @@ const Top = () => {
   return (
     <div className='d-flex justify-content-between p-5 top'>
       <div className="left">
-        <div className="place h1 font-monospace text-white">
+        <div className="place h1 text-white">
           Bhubaneswar
         </div>
         <div className="h5 text-white">

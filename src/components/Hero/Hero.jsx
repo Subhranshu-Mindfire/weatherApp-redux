@@ -6,7 +6,7 @@ import Bottom from '../Bottom/Bottom'
 
 const Hero = () => {
   return (
-    <div className='hero w-75'>
+    <div className='hero container rounded-5'>
       <Top/>
       <Middle/>
       <Bottom/>
