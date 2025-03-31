@@ -52,7 +52,7 @@ const Top = () => {
         <input type="text" className='form-control fs-4 rounded-4' placeholder='Search for city' value={city} onChange={(e)=>setCity(e.target.value)}/>
         <div>
         {city && cityResults.map((city)=>(
-          <div role="button" className='fs-4 bg-light-subtle border d-flex justify-content-between text-dark px-2 rounded-bottom-4 border-0 px-3 py-1' onClick={() => handleClick(city.name,city.lat,city.lon)}><div>{city.name}</div> 
+          <div role="button" className='fs-4 bg-light-subtle border d-flex justify-content-between text-dark px-2 rounded-bottom-4 border-0 px-3 py-1 result' onClick={() => handleClick(city.name,city.lat,city.lon)}><div>{city.name}</div> 
           <div className='text-secondary fs-5 my-auto'>
             {city.state} {city.country}
           </div></div>
