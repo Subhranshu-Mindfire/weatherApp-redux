@@ -71,7 +71,7 @@ export const fetchCity = createAsyncThunk(
   'weather/fetchCity',
   async (query) => {
     try {
-      const response = await axios.get('http://api.openweathermap.org/geo/1.0/direct', {
+      const response = await axios.get('https://api.openweathermap.org/geo/1.0/direct', {
         params: {
           q: query,
           limit:"10",
