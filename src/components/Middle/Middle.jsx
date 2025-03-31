@@ -28,9 +28,9 @@ const Middle = () => {
           <img src={`https://openweathermap.org/img/wn/${weatherData?.weather?.[0]?.icon}@4x.png`} style={{ width: "250px" }} alt="" className='' />
         </div>
         <div className="desc text-white fw-semibold d-flex flex-column justify-content-center fs-4">
-          <div className="feels-like my-1"> Feels Like: {toogleTemp ? (weatherData?.main?.feels_like - 273).toFixed(0) : weatherData?.main?.feels_like?.toFixed(0)}&#176;C</div>
-          <div className="wind my-1">Wind: {weatherData?.wind?.speed} km/h</div>
-          <div className="humidity my-1">Humidity: {weatherData?.main?.humidity}</div>
+          <div className="feels-like my-1"> <i class="fa-solid fa-temperature-three-quarters"></i> Feels Like: {toogleTemp ? (weatherData?.main?.feels_like - 273).toFixed(0) : weatherData?.main?.feels_like?.toFixed(0)}&#176;C</div>
+          <div className="wind my-1"> <i class="fa-solid fa-wind"></i> Wind: {weatherData?.wind?.speed} km/h</div>
+          <div className="humidity my-1"><i class="fa-solid fa-droplet"></i> Humidity: {weatherData?.main?.humidity}</div>
         </div>
       </div>
     </div>
