@@ -9,7 +9,7 @@ const Top = () => {
   const cityName = useSelector((state)=> state.weather.cityName)
   const dispatch = useDispatch()
   const [date, setDate] = useState(new Date())
-  const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Friday", "Saturday"];
+  const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday","Thursday", "Friday", "Saturday"];
 
   useEffect(() => {
     if (city != ""){

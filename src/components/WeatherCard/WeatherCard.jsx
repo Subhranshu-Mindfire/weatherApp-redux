@@ -1,7 +1,6 @@
 import React from 'react'
 
 const WeatherCard = ({dayName,icon,minTemp,maxTemp}) => {
-  console.log(dayName,icon,minTemp,maxTemp);
   
   return (
     <div className='weather-card text-white fs-4 fw-semibold px-4'>
