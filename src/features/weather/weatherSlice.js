@@ -114,7 +114,8 @@ export const fetchForecastByCoordinates = createAsyncThunk(
         params: {
           lat,
           lon,
-          appid: 'a50afa1dcea7286614a3fdecc403bade', 
+          appid: 'a50afa1dcea7286614a3fdecc403bade',
+          units: 'metric' 
         },
       });
       console.log(response.data)

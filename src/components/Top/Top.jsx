@@ -41,8 +41,8 @@ const Top = () => {
           {cityName}
         </div>
         <div className="h5 text-white">
-          {dayNames[date.getDay("en-US")]}, 
-          {new Intl.DateTimeFormat('en-GB', { year: "numeric", month: "short", day: "2-digit" }).format(new Date).split(" ").join(" ")} | 
+          {dayNames[date.getDay("en-US")]}, &nbsp; 
+          {new Intl.DateTimeFormat('en-GB', { year: "numeric", month: "short", day: "2-digit" }).format(new Date).split(" ").join(" ")} |  &nbsp;
           {date.toLocaleString("en-US", { hour: 'numeric', minute: 'numeric',second: 'numeric', hour12: true })}<br />
         </div>
       </div>
