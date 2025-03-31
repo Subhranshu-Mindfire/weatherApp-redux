@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchCity, setCityName, fetchWeatherByCoordinates } from '../../features/weather/weatherSlice'
+import { fetchCity, setCityName, fetchWeatherByCoordinates, fetchForecastByCoordinates } from '../../features/weather/weatherSlice'
 import "./Top.css"
 
 const Top = () => {
@@ -18,7 +18,8 @@ const Top = () => {
   }, [city])
 
   useEffect(() => {
-    dispatch(fetchWeatherByCoordinates({lat: "20.2960", lon: "85.8246"}))
+    dispatch(fetchWeatherByCoordinates({lat: "20.2960", lon: "85.8246"})),
+    dispatch(fetchForecastByCoordinates({lat: "20.2960", lon: "85.8246"}))
   }, [])
   
 
@@ -30,6 +31,7 @@ const Top = () => {
     dispatch(setCityName(city))
     setCity("")
     dispatch(fetchWeatherByCoordinates({lat,lon}))
+    dispatch(fetchForecastByCoordinates({lat,lon}))
   }
 
   return (
@@ -39,9 +41,9 @@ const Top = () => {
           {cityName}
         </div>
         <div className="h5 text-white">
-          {dayNames[date.getDay("en-US")]}, {new Intl.DateTimeFormat('en-GB', { year: "numeric", month: "short", day: "2-digit" }).format(new Date).split(" ").join(" ")} | {date.toTimeString().split(' ')[0]} PM <br />
-          
-          
+          {dayNames[date.getDay("en-US")]}, 
+          {new Intl.DateTimeFormat('en-GB', { year: "numeric", month: "short", day: "2-digit" }).format(new Date).split(" ").join(" ")} | 
+          {date.toLocaleString("en-US", { hour: 'numeric', minute: 'numeric',second: 'numeric', hour12: true })}<br />
         </div>
       </div>
       <div className="right">

@@ -7,6 +7,7 @@ const initialState = {
   cityResults: [],
   isLoading: false,
   error: null,
+  forecastData: null
 };
 
 const weatherSlice = createSlice(
@@ -20,6 +21,8 @@ const weatherSlice = createSlice(
     },
     extraReducers: (builder) => {
       builder
+        // Fetched City Data
+
         .addCase(fetchCity.pending, (state) => {
           state.isLoading = true;
           state.error = null;
@@ -43,6 +46,20 @@ const weatherSlice = createSlice(
           state.weatherData = action.payload;
         })
         .addCase(fetchWeatherByCoordinates.rejected, (state, action) => {
+          state.isLoading = false;
+          state.error = action.payload;
+        })
+
+        // Fetch Forecast data
+        .addCase(fetchForecastByCoordinates.pending, (state) => {
+          state.isLoading = true;
+          state.error = null;
+        })
+        .addCase(fetchForecastByCoordinates.fulfilled, (state, action) => {
+          state.isLoading = false;
+          state.forecastData = action.payload;
+        })
+        .addCase(fetchForecastByCoordinates.rejected, (state, action) => {
           state.isLoading = false;
           state.error = action.payload;
         });
@@ -75,6 +92,25 @@ export const fetchWeatherByCoordinates = createAsyncThunk(
   async ({ lat, lon }) => {
     try {
       const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather`, {
+        params: {
+          lat,
+          lon,
+          appid: 'a50afa1dcea7286614a3fdecc403bade', 
+        },
+      });
+      console.log(response.data)
+      return response.data;
+    } catch (error) {
+       console.log(error)
+    }
+  }
+);
+
+export const fetchForecastByCoordinates = createAsyncThunk(
+  'weather/fetchForecastByCoordinates',
+  async ({ lat, lon }) => {
+    try {
+      const response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast`, {
         params: {
           lat,
           lon,
