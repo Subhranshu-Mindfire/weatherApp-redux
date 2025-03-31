@@ -3,9 +3,8 @@ import axios from "axios";
 
 const initialState = {
   weatherData: null,
-  city: "Bhubaneswar",
+  cityName: "Bhubaneswar",
   cityResults: [],
-  cityCoordinates: {lat: "20.2960", lon: "85.8246"},
   isLoading: false,
   error: null,
 };
@@ -15,7 +14,9 @@ const weatherSlice = createSlice(
     name: "weather",
     initialState,
     reducers:{
-      
+      setCityName: (state,action) => {
+        state.cityName = action.payload
+      }
     },
     extraReducers: (builder) => {
       builder
@@ -31,6 +32,20 @@ const weatherSlice = createSlice(
           state.isLoading = false;
           state.error = action.payload;
         })
+        
+        // Fetch weather data
+        .addCase(fetchWeatherByCoordinates.pending, (state) => {
+          state.isLoading = true;
+          state.error = null;
+        })
+        .addCase(fetchWeatherByCoordinates.fulfilled, (state, action) => {
+          state.isLoading = false;
+          state.weatherData = action.payload;
+        })
+        .addCase(fetchWeatherByCoordinates.rejected, (state, action) => {
+          state.isLoading = false;
+          state.error = action.payload;
+        });
     },
   }
 )
@@ -55,5 +70,25 @@ export const fetchCity = createAsyncThunk(
   }
 );
 
+export const fetchWeatherByCoordinates = createAsyncThunk(
+  'weather/fetchWeatherByCoordinates',
+  async ({ lat, lon }) => {
+    try {
+      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather`, {
+        params: {
+          lat,
+          lon,
+          appid: 'a50afa1dcea7286614a3fdecc403bade', 
+        },
+      });
+      console.log(response.data)
+      return response.data;
+    } catch (error) {
+       console.log(error)
+    }
+  }
+);
 
 export default weatherSlice.reducer
+
+export const {setCityName} = weatherSlice.actions
